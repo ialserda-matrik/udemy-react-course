@@ -12,7 +12,12 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  return (
+    <h1 style={{ color: "red", fontSize: "35px" }}>
+      {" "}
+      - Fast React Pizza Co. -
+    </h1>
+  );
 }
 
 function Menu() {
@@ -31,7 +36,13 @@ function Footer() {
 }
 
 function Pizza() {
-  return <h2>Pizza</h2>;
+  return (
+    <div>
+      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" width="200" />
+      <h2>Pizza Spinaci</h2>
+      <p>Tomato, Mozarella, spinach and Ricotta cheese</p>
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -40,4 +51,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
