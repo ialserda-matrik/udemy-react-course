@@ -1,3 +1,8 @@
-# udemy-react-course
+# Udemy React Course
 
-Companion repo for the Udemy React course.
+Companion repo for practicing the Udemy React course.
+
+# Chapters
+
+- 03-pizza-menu
+
