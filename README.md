@@ -1,3 +1,3 @@
-# udemy-react-course
+# Udemy React Course
 
-Companion repo for the Udemy React course.
+Companion repo for practice the Udemy React course.
