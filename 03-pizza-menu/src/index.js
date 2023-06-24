@@ -66,57 +66,70 @@ function Header() {
 }
 
 function Menu() {
-  const numPizzas = pizzaData.length;
+  const pizzas = pizzaData;
+  //const pizzas = [];
+  const numPizzas = pizzas.length;
 
   return (
     <main className="menu">
       <h2>Our menu</h2>
 
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
-      ) : null}
+        <>
+          <p>Authentic Italian cuisine.</p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>We're still working on out menu. Please come back later</p>
+      )}
     </main>
   );
 }
 
 function Footer() {
-  const hour = new Date().getHours();
+  const currentHour = new Date().getHours();
   const openHour = 12;
-  const closeHour = 22;
-  const isOpen = hour >= openHour && hour <= closeHour;
+  const closeHour = 19;
+  const isOpen = currentHour >= openHour && currentHour <= closeHour;
 
   return (
     <footer className="footer">
       {isOpen ? (
-        <div className="order">
-          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
-          <button className="btn">Order</button>
-        </div>
+        <Order openHour={openHour} closeHour={closeHour} />
       ) : (
         <p>
-          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+          We're happy to welcome you between {openHour}:00 and {closeHour + 1}
+          :00.
         </p>
       )}
     </footer>
   );
 }
 
-function Pizza(props) {
+function Order({ closeHour, openHour }) {
   return (
-    <li className="pizza">
-      <img
-        src={props.pizzaObj.photoName}
-        alt={props.pizzaObj.name}
-        width="200"
-      />
+    <div className="order">
+      <p>
+        We're open from {openHour} until {closeHour}:00. Come visit us or order
+        online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
+
+function Pizza({ pizzaObj }) {
+  return (
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} width="200" />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "Sold out" : pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -128,4 +141,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
